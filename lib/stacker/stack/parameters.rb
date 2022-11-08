@@ -35,6 +35,7 @@ module Stacker
         ).merge(
           stack.options.fetch 'parameters', {}
         )
+        puts(available)
 
         available.slice(*template_definitions.keys)
       end
