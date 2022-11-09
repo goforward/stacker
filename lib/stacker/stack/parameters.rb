@@ -26,7 +26,7 @@ module Stacker
       def local
         region_defaults = stack.region.defaults.fetch 'parameters', {}
         global_defaults = stack.region.defaults.fetch 'globalVars', {}
-        global_vars = Hash[global_defaults.map { |k, v| [ k, v.resolved ] }]
+        global_vars = global_defaults.resolve
         puts("global vars")
         puts(global_vars)
 
