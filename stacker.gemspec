@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'indentation', '~> 0.0'
   s.add_dependency 'jsonlint', '~> 0.2.0'
   s.add_dependency 'memoist', '~> 0.14'
-  s.add_dependency 'rainbow', '~> 3'
+  s.add_dependency 'rainbow', '~> 2.2.1'
   s.add_dependency 'thor', '~> 0.18'
   s.add_dependency 'yamllint', '~> 0.0.9'
 
