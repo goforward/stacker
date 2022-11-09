@@ -26,7 +26,11 @@ module Stacker
       def local
         region_defaults = stack.region.defaults.fetch 'parameters', {}
         global_defaults = stack.region.defaults.fetch 'globalParameterFile', {}
-        global_vars = YAML.load_file(global_defaults)
+        if global_defaults.empty?
+          global_vars = {}
+        else
+          global_vars = YAML.load_file(global_defaults)
+        end
 
         template_defaults = Hash[
           template_definitions.select { |_, opts|
