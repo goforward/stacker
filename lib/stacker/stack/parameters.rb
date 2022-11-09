@@ -19,14 +19,14 @@ module Stacker
       end
 
       def global_defaults
-        stack.region.defaults.fetch 'globalVars', {}
+        stack.region.defaults.fetch 'globalParameterFile', {}
       end
 
       # template defaults merged with region and stack-specific overrides
       def local
         region_defaults = stack.region.defaults.fetch 'parameters', {}
-        global_defaults = stack.region.defaults.fetch 'globalVars', {}
-        global_vars = global_defaults.resolve
+        global_defaults = stack.region.defaults.fetch 'globalParameterFile', {}
+        global_vars = YAML.load_file(global_defaults)
         puts("global vars")
         puts(global_vars)
 
@@ -40,6 +40,8 @@ module Stacker
 
         available = template_defaults.merge(
           region_defaults
+        ).merge(
+          global_vars
         ).merge(
           stack.options.fetch 'parameters', {}
         )
