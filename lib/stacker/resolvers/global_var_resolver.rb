@@ -8,7 +8,7 @@ module Stacker
       def resolve
         global_defaults = region.defaults.fetch 'globalParameterFile', {}
         global_vars = YAML.load_file(global_defaults)
-        global_vars.fetch ref.fetch('GlobalVar')
+        global_vars[ref.fetch('GlobalVar')]
       end
 
     end
