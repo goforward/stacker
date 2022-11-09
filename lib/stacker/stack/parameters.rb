@@ -21,6 +21,12 @@ module Stacker
       # template defaults merged with region and stack-specific overrides
       def local
         region_defaults = stack.region.defaults.fetch 'parameters', {}
+        env_file = stack.region.defaults.fetch 'environmentFile', {}
+        puts("env file")
+        puts(env_file) # resolve this with file resolver?
+        env_vars = env_file.resolved
+        puts("env vars")
+        puts(env_vars)
 
         template_defaults = Hash[
           template_definitions.select { |_, opts|
@@ -35,7 +41,6 @@ module Stacker
         ).merge(
           stack.options.fetch 'parameters', {}
         )
-        puts(available)
 
         available.slice(*template_definitions.keys)
       end
