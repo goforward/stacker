@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.email       = %w[martin@cotap.com evan@cotap.com]
   s.homepage    = 'https://github.com/cotap/stacker'
 
-  s.required_ruby_version = '>= 2.4'
+  s.required_ruby_version = '>= 3'
 
   s.add_dependency 'activesupport', '~> 4.0'
   s.add_dependency 'aws-sdk', '~> 3'
