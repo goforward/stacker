@@ -24,7 +24,7 @@ module Stacker
                     when 'DEBUG' then '333333'
                     else              :default
                     end
-            msg = Rainbow(msg).color(color)
+            msg = msg.color(color)
           end
 
           old_formatter.call level, time, prog, msg
