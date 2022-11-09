@@ -19,13 +19,13 @@ module Stacker
       end
 
       def global_defaults
-        stack.region.defaults.fetch 'environmentFile', {}
+        stack.region.defaults.fetch 'globalVars', {}
       end
 
       # template defaults merged with region and stack-specific overrides
       def local
         region_defaults = stack.region.defaults.fetch 'parameters', {}
-        global_defaults = stack.region.defaults.fetch 'environmentFile', {}
+        global_defaults = stack.region.defaults.fetch 'globalVars', {}
         global_vars = Hash[global_defaults.map { |k, v| [ k, v.resolved ] }]
         puts("global vars")
         puts(global_vars)
