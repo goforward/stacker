@@ -18,15 +18,17 @@ module Stacker
         stack.region.defaults.fetch 'parameters', {}
       end
 
+      def global_defaults
+        stack.region.defaults.fetch 'environmentFile', {}
+      end
+
       # template defaults merged with region and stack-specific overrides
       def local
         region_defaults = stack.region.defaults.fetch 'parameters', {}
-        env_file = stack.region.defaults.fetch 'environmentFile', {}
-        puts("env file")
-        puts(env_file) # resolve this with file resolver?
-        env_vars = env_file.resolved
-        puts("env vars")
-        puts(env_vars)
+        global_defaults = stack.region.defaults.fetch 'environmentFile', {}
+        global_vars = Hash[global_defaults.map { |k, v| [ k, v.resolved ] }]
+        puts("global vars")
+        puts(global_vars)
 
         template_defaults = Hash[
           template_definitions.select { |_, opts|
