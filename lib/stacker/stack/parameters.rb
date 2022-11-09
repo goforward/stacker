@@ -26,9 +26,7 @@ module Stacker
       def local
         region_defaults = stack.region.defaults.fetch 'parameters', {}
         global_defaults = stack.region.defaults.fetch 'globalParameterFile', {}
-        global_vars = YAML.load_file(global_defaults)
-        puts("global vars")
-        puts(global_vars)
+        global_vars = YAML.safe_load_file(global_defaults)
 
         template_defaults = Hash[
           template_definitions.select { |_, opts|
@@ -39,9 +37,9 @@ module Stacker
         ]
 
         available = template_defaults.merge(
-          region_defaults
-        ).merge(
           global_vars
+        ).merge(
+          region_defaults
         ).merge(
           stack.options.fetch 'parameters', {}
         )
