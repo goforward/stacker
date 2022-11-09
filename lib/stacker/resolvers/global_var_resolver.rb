@@ -3,7 +3,7 @@ require 'stacker/resolvers/resolver'
 module Stacker
   module Resolvers
 
-    class StackOutputResolver < Resolver
+    class GlobalVarResolver < Resolver
 
       def resolve
         global_defaults = stack.region.defaults.fetch 'globalParameterFile', {}
