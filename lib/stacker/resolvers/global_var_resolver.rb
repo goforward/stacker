@@ -6,7 +6,7 @@ module Stacker
     class GlobalVarResolver < Resolver
 
       def resolve
-        global_defaults = stack.region.defaults.fetch 'globalParameterFile', {}
+        global_defaults = region.defaults.fetch 'globalParameterFile', {}
         global_vars = YAML.load_file(global_defaults)
         global_vars.fetch ref.fetch('GlobalVar')
       end
