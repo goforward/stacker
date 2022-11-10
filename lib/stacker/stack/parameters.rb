@@ -24,8 +24,6 @@ module Stacker
 
       # template defaults merged with region and stack-specific overrides
       def local
-        region_defaults = stack.region.defaults.fetch 'parameters', {}
-        global_defaults = stack.region.defaults.fetch 'globalParameterFile', {}
         if global_defaults.empty?
           global_vars = {}
         else

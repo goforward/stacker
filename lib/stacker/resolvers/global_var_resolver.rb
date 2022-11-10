@@ -1,5 +1,4 @@
 require 'stacker/resolvers/resolver'
-require 'stacker/stack/parameter'
 
 module Stacker
   module Resolvers
