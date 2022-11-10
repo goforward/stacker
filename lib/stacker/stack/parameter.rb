@@ -44,7 +44,7 @@ module Stacker
       def resolved
         if dependency?
           begin
-            resolver.resolve.resolved
+            Parameter.new(resolver.resolve, region).resolved
           rescue => err
             raise ParameterResolutionError.new value, err
           end
