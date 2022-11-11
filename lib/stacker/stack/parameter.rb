@@ -1,6 +1,6 @@
 require 'stacker/resolvers/stack_output_resolver'
 require 'stacker/resolvers/file_resolver'
-require 'stacker/resolvers/global_var_resolver'
+require 'stacker/resolvers/parameter_file_resolver'
 
 module Stacker
   class Stack
