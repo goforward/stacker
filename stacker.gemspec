@@ -11,16 +11,14 @@ Gem::Specification.new do |s|
   s.files       = Dir['lib/**/*']
   s.executables = Dir['bin/*'].map{ |f| File.basename(f) }
 
-  s.has_rdoc    = false
-
   s.authors     = ['Cotap, Inc.']
   s.email       = %w[martin@cotap.com evan@cotap.com]
   s.homepage    = 'https://github.com/cotap/stacker'
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.4'
 
   s.add_dependency 'activesupport', '~> 4.0'
-  s.add_dependency 'aws-sdk', '~> 2.6'
+  s.add_dependency 'aws-sdk', '~> 3'
   s.add_dependency 'coderay', '~> 1.1'
   s.add_dependency 'diffy', '~> 3.0'
   s.add_dependency 'indentation', '~> 0.0'

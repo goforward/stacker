@@ -18,9 +18,17 @@ module Stacker
         stack.region.defaults.fetch 'parameters', {}
       end
 
-      # template defaults merged with region and stack-specific overrides
+      def region_defaults_file
+        stack.region.defaults.fetch 'parameterFile', {}
+      end
+
+      # template defaults merged with region parameter file, region defaults, and stack-specific overrides
       def local
-        region_defaults = stack.region.defaults.fetch 'parameters', {}
+        if region_defaults_file.empty?
+          region_file_vars = {}
+        else
+          region_file_vars = YAML.load_file(region_defaults_file)
+        end
 
         template_defaults = Hash[
           template_definitions.select { |_, opts|
@@ -31,6 +39,8 @@ module Stacker
         ]
 
         available = template_defaults.merge(
+          region_file_vars
+        ).merge(
           region_defaults
         ).merge(
           stack.options.fetch 'parameters', {}

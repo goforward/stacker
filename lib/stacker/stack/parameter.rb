@@ -1,5 +1,6 @@
 require 'stacker/resolvers/stack_output_resolver'
 require 'stacker/resolvers/file_resolver'
+require 'stacker/resolvers/file_parameter_resolver'
 
 module Stacker
   class Stack
@@ -43,7 +44,7 @@ module Stacker
       def resolved
         if dependency?
           begin
-            resolver.resolve
+            Parameter.new(resolver.resolve, region).resolved
           rescue => err
             raise ParameterResolutionError.new value, err
           end
