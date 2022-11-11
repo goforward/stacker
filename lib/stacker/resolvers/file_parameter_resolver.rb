@@ -3,7 +3,7 @@ require 'stacker/resolvers/resolver'
 module Stacker
   module Resolvers
 
-    class ParameterResolver < Resolver
+    class FileParameterResolver < Resolver
 
       def resolve
         parameter_file = region.defaults.fetch 'parameterFile', {}
